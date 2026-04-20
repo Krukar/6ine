@@ -1,0 +1,32 @@
+@layer base {
+    a,
+    input,
+    button {
+        @apply in-out-smooth;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        @apply heading;
+    }
+
+    h1 {
+        @apply text-6xl;
+    }
+
+    section {
+        @apply gutter;
+    }
+
+    img {
+        @apply w-full;
+    }
+
+    input {
+        @apply outline-0;
+    }
+}

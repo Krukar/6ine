@@ -1,0 +1,92 @@
+/*========== 
+    Button
+==========*/
+@utility button {
+    @apply w-full;
+
+    @apply py-5;
+
+    @apply bg-primary;
+    @apply text-light;
+
+    @apply font-heading;
+    @apply tracking-wider;
+    @apply text-lg;
+    @apply uppercase;
+
+    @apply cursor-pointer;
+
+    @apply focus:bg-dark;
+    @apply hover:bg-dark;
+}
+
+/*========== 
+    Effects
+==========*/
+@utility in-out-smooth {
+    transition-property: all;
+    transition-duration: 0.25s;
+    transition-delay: 0s;
+
+    @apply ease-cool;
+}
+
+/*========== 
+    Form
+==========*/
+@utility fieldset {
+    @apply mb-7;
+}
+
+@utility input {
+    @apply mt-2;
+
+    @apply border-b-2;
+    @apply border-neutral;
+
+    @apply focus:border-primary;
+}
+
+@utility label {
+    @apply flex;
+    @apply flex-col;
+}
+
+/*========== 
+    Layout
+==========*/
+@utility gutter {
+    @apply px-7;
+    @apply md:px-8;
+    @apply lg:px-9;
+    @apply xl:px-10;
+}
+
+/*========== 
+    Links
+==========*/
+@utility link {
+    @apply in-out-smooth;
+}
+
+@utility link--primary {
+    @apply link;
+
+    @apply hover:text-primary;
+    @apply focus:text-primary;
+}
+
+@utility link--opacity {
+    @apply hover:opacity-80;
+    @apply focus:opacity-80;
+}
+
+/*========== 
+    Typography
+==========*/
+@utility heading {
+    @apply font-heading;
+
+    @apply font-bold;
+    @apply tracking-wide;
+}
