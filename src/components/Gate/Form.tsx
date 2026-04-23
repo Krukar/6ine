@@ -1,9 +1,9 @@
 import { useState, type ChangeEvent } from 'react';
 
 import { useServerFn } from '@tanstack/react-start';
-import { verify_code } from '#/utils/skydome.functions';
+import { verify_code } from '#/utils/gate.functions';
 
-export default function SkyDome({ handle_hide }: { handle_hide: Function }) {
+export default function Gate({ handle_hide }: { handle_hide: Function }) {
     const [attempt, set_attempt] = useState<string>('');
 
     const submit = useServerFn(verify_code);

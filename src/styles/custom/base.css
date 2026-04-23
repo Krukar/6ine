@@ -15,7 +15,15 @@
     }
 
     h1 {
-        @apply text-6xl;
+        @apply text-4xl;
+
+        @apply md:text-6xl;
+    }
+
+    h2 {
+        @apply text-xl;
+
+        @apply md:text-3xl;
     }
 
     section {
@@ -28,5 +36,10 @@
 
     input {
         @apply outline-0;
+    }
+
+    ::selection {
+        @apply bg-primary;
+        @apply text-light;
     }
 }

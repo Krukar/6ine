@@ -2,9 +2,12 @@ import { HeadContent, Scripts, createRootRoute } from '@tanstack/react-router';
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools';
 import { TanStackDevtools } from '@tanstack/react-devtools';
 
-import Footer from '#/components/Footer';
-import Header from '#/components/Header';
-import SkyDome from '#/components/Skydome/Index';
+import { Auth0Wrapper } from '@/auth/auth0';
+
+import Banner from '@/components/Banner';
+import Footer from '@/components/Footer';
+import Header from '@/components/Header';
+import Gate from '@/components/Gate/Index';
 
 import styles from '@/styles/index.css?url';
 
@@ -41,13 +44,17 @@ function RootDocument({ children }: { children: React.ReactNode }) {
             </head>
 
             <body>
-                <Header />
+                <Auth0Wrapper>
+                    <Banner />
 
-                <main>{children}</main>
+                    <Header />
 
-                <Footer />
+                    <main>{children}</main>
 
-                <SkyDome />
+                    <Footer />
+
+                    <Gate />
+                </Auth0Wrapper>
 
                 <TanStackDevtools
                     config={{
@@ -60,6 +67,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
                         },
                     ]}
                 />
+
                 <Scripts />
             </body>
         </html>

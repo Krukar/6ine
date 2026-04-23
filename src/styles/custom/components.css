@@ -1,2 +1,21 @@
 @layer components {
+    .drake {
+        @apply inline-block;
+
+        @apply link--opacity;
+
+        @apply origin-center;
+
+        animation: drake 3s cubic-bezier(0, 0, 0.5, 1) infinite alternate;
+    }
+
+    @keyframes drake {
+        from {
+            transform: rotate(-5deg);
+        }
+
+        to {
+            transform: rotate(5deg);
+        }
+    }
 }

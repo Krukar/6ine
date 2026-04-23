@@ -4,20 +4,40 @@
 @utility button {
     @apply w-full;
 
+    @apply px-7;
     @apply py-5;
 
-    @apply bg-primary;
-    @apply text-light;
+    @apply rounded-sm;
 
     @apply font-heading;
-    @apply tracking-wider;
+    @apply font-medium;
+
     @apply text-lg;
+
+    @apply tracking-wider;
     @apply uppercase;
 
     @apply cursor-pointer;
 
     @apply focus:bg-dark;
     @apply hover:bg-dark;
+
+    @apply focus:text-light;
+    @apply hover:text-light;
+}
+
+@utility button--primary {
+    @apply button;
+
+    @apply bg-primary;
+    @apply text-light;
+}
+
+@utility button--light {
+    @apply button;
+
+    @apply bg-light;
+    @apply text-primary;
 }
 
 /*========== 

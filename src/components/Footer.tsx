@@ -3,7 +3,7 @@ import { Link } from '@tanstack/react-router';
 export default function Footer() {
     return (
         <footer className="bg-primary text-light">
-            <section className="flex justify-between py-5 text-sm">
+            <section className="flex justify-between py-7 text-sm">
                 <div>
                     <ul className="flex space-x-8">
                         {[
@@ -29,10 +29,19 @@ export default function Footer() {
                     </ul>
                 </div>
 
-                <div>
-                    <a className="link--opacity" href="mailto:help@6ix.video">
-                        help@6ix.video
-                    </a>
+                <div className="flex space-x-5">
+                    <div>Fuck AI</div>
+
+                    <div className="text-neutral">|</div>
+
+                    <div>
+                        <a
+                            className="link--opacity"
+                            href="mailto:help@6ix.video"
+                        >
+                            contact@6ix.video
+                        </a>
+                    </div>
                 </div>
             </section>
         </footer>

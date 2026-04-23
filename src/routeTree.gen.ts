@@ -11,6 +11,9 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CreateIndexRouteImport } from './routes/create/index'
+import { Route as ProfileUserIdRouteImport } from './routes/profile/$userId'
+import { Route as PlayerVideoIdRouteImport } from './routes/player/$videoId'
 import { Route as PageTermsRouteImport } from './routes/page/terms'
 import { Route as PagePrivacyRouteImport } from './routes/page/privacy'
 import { Route as PageAboutRouteImport } from './routes/page/about'
@@ -23,6 +26,21 @@ const AboutRoute = AboutRouteImport.update({
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CreateIndexRoute = CreateIndexRouteImport.update({
+  id: '/create/',
+  path: '/create/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfileUserIdRoute = ProfileUserIdRouteImport.update({
+  id: '/profile/$userId',
+  path: '/profile/$userId',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PlayerVideoIdRoute = PlayerVideoIdRouteImport.update({
+  id: '/player/$videoId',
+  path: '/player/$videoId',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PageTermsRoute = PageTermsRouteImport.update({
@@ -47,6 +65,9 @@ export interface FileRoutesByFullPath {
   '/page/about': typeof PageAboutRoute
   '/page/privacy': typeof PagePrivacyRoute
   '/page/terms': typeof PageTermsRoute
+  '/player/$videoId': typeof PlayerVideoIdRoute
+  '/profile/$userId': typeof ProfileUserIdRoute
+  '/create/': typeof CreateIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -54,6 +75,9 @@ export interface FileRoutesByTo {
   '/page/about': typeof PageAboutRoute
   '/page/privacy': typeof PagePrivacyRoute
   '/page/terms': typeof PageTermsRoute
+  '/player/$videoId': typeof PlayerVideoIdRoute
+  '/profile/$userId': typeof ProfileUserIdRoute
+  '/create': typeof CreateIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -62,12 +86,31 @@ export interface FileRoutesById {
   '/page/about': typeof PageAboutRoute
   '/page/privacy': typeof PagePrivacyRoute
   '/page/terms': typeof PageTermsRoute
+  '/player/$videoId': typeof PlayerVideoIdRoute
+  '/profile/$userId': typeof ProfileUserIdRoute
+  '/create/': typeof CreateIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/page/about' | '/page/privacy' | '/page/terms'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/page/about'
+    | '/page/privacy'
+    | '/page/terms'
+    | '/player/$videoId'
+    | '/profile/$userId'
+    | '/create/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/page/about' | '/page/privacy' | '/page/terms'
+  to:
+    | '/'
+    | '/about'
+    | '/page/about'
+    | '/page/privacy'
+    | '/page/terms'
+    | '/player/$videoId'
+    | '/profile/$userId'
+    | '/create'
   id:
     | '__root__'
     | '/'
@@ -75,6 +118,9 @@ export interface FileRouteTypes {
     | '/page/about'
     | '/page/privacy'
     | '/page/terms'
+    | '/player/$videoId'
+    | '/profile/$userId'
+    | '/create/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -83,6 +129,9 @@ export interface RootRouteChildren {
   PageAboutRoute: typeof PageAboutRoute
   PagePrivacyRoute: typeof PagePrivacyRoute
   PageTermsRoute: typeof PageTermsRoute
+  PlayerVideoIdRoute: typeof PlayerVideoIdRoute
+  ProfileUserIdRoute: typeof ProfileUserIdRoute
+  CreateIndexRoute: typeof CreateIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -99,6 +148,27 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/create/': {
+      id: '/create/'
+      path: '/create'
+      fullPath: '/create/'
+      preLoaderRoute: typeof CreateIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/profile/$userId': {
+      id: '/profile/$userId'
+      path: '/profile/$userId'
+      fullPath: '/profile/$userId'
+      preLoaderRoute: typeof ProfileUserIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/player/$videoId': {
+      id: '/player/$videoId'
+      path: '/player/$videoId'
+      fullPath: '/player/$videoId'
+      preLoaderRoute: typeof PlayerVideoIdRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/page/terms': {
@@ -131,6 +201,9 @@ const rootRouteChildren: RootRouteChildren = {
   PageAboutRoute: PageAboutRoute,
   PagePrivacyRoute: PagePrivacyRoute,
   PageTermsRoute: PageTermsRoute,
+  PlayerVideoIdRoute: PlayerVideoIdRoute,
+  ProfileUserIdRoute: ProfileUserIdRoute,
+  CreateIndexRoute: CreateIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
