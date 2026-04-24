@@ -1,7 +1,11 @@
 import { Auth0Provider, useAuth0 } from '@auth0/auth0-react';
 import { createContext, useContext } from 'react';
 
-interface Auth0ContextType {
+import { useRouter } from '@tanstack/react-router';
+
+import { useEffect } from 'react';
+
+export interface Auth0ContextType {
     isAuthenticated: boolean;
     user: any;
     login: () => void;
@@ -27,6 +31,8 @@ export function Auth0Wrapper({ children }: { children: React.ReactNode }) {
 }
 
 function Auth0ContextProvider({ children }: { children: React.ReactNode }) {
+    const router = useRouter();
+
     const { isAuthenticated, user, loginWithRedirect, logout, isLoading } =
         useAuth0();
 
@@ -38,6 +44,16 @@ function Auth0ContextProvider({ children }: { children: React.ReactNode }) {
             logout({ logoutParams: { returnTo: window.location.origin } }),
         isLoading,
     };
+
+    /*========== 
+        We need a useEffet to update the router whenever the auth mounts or changes
+    ==========*/
+    useEffect(() => {
+        router.update({ context: { auth: contextValue } });
+
+        router.invalidate(); // TODO: Is this necessary and what does it do?
+        // According to Claude: re-triggers beforeLoad with the updated context
+    }, [isAuthenticated, isLoading, user]);
 
     return (
         <Auth0Context.Provider value={contextValue}>

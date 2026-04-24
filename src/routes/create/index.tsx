@@ -1,13 +1,20 @@
 import { createFileRoute } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/create/')({
-    beforeLoad: ({ context, location }) => {
-        console.log('context', context);
-        // if (!context.auth.isAuthenticated) {
-        //     // Auth0 handles login redirects, so just trigger login
-        //     context.auth.login();
-        //     return;
-        // }
+    beforeLoad: ({ context }) => {
+        /*========== 
+            If the auth is loading then return and wait for the next cycle
+        ==========*/
+        if (!context.auth || context.auth.isLoading) return;
+
+        /*========== 
+            If they are not logged in send them to the login page
+        ==========*/
+        if (!context.auth?.isAuthenticated) {
+            context.auth.login();
+
+            return;
+        }
     },
     component: RouteComponent,
 });

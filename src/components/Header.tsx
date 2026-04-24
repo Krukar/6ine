@@ -1,10 +1,9 @@
 import { Link } from '@tanstack/react-router';
 
-// import { useAuth0Context } from '@/auth/auth0';
+import { useAuth0Context } from '@/auth/auth0';
 
 export default function Header() {
-    // const auth = useAuth0Context();
-
+    const auth = useAuth0Context();
     // TODO: If logged in then show home or create button!@!!
 
     return (

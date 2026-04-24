@@ -1,8 +1,13 @@
-import { HeadContent, Scripts, createRootRoute } from '@tanstack/react-router';
+import {
+    HeadContent,
+    Scripts,
+    createRootRouteWithContext,
+} from '@tanstack/react-router';
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools';
 import { TanStackDevtools } from '@tanstack/react-devtools';
 
 import { Auth0Wrapper } from '@/auth/auth0';
+import type { Auth0ContextType } from '@/auth/auth0';
 
 import Banner from '@/components/Banner';
 import Footer from '@/components/Footer';
@@ -11,7 +16,9 @@ import Gate from '@/components/Gate/Index';
 
 import styles from '@/styles/index.css?url';
 
-export const Route = createRootRoute({
+export const Route = createRootRouteWithContext<{
+    auth: Auth0ContextType | undefined;
+}>()({
     head: () => ({
         meta: [
             {
