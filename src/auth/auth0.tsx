@@ -1,4 +1,4 @@
-import { Auth0Provider, useAuth0 } from '@auth0/auth0-react';
+import { Auth0Provider, useAuth0, User } from '@auth0/auth0-react';
 import { createContext, useContext } from 'react';
 
 import { useRouter } from '@tanstack/react-router';
@@ -7,8 +7,8 @@ import { useEffect } from 'react';
 
 export interface Auth0ContextType {
     isAuthenticated: boolean;
-    user: any;
-    login: () => void;
+    user: User | undefined;
+    login: (options?: { appState?: { returnTo?: string } }) => void;
     logout: () => void;
     isLoading: boolean;
 }
@@ -16,6 +16,8 @@ export interface Auth0ContextType {
 const Auth0Context = createContext<Auth0ContextType | undefined>(undefined);
 
 export function Auth0Wrapper({ children }: { children: React.ReactNode }) {
+    const router = useRouter();
+
     return (
         <Auth0Provider
             domain={import.meta.env.VITE_AUTH0_DOMAIN}
@@ -23,6 +25,9 @@ export function Auth0Wrapper({ children }: { children: React.ReactNode }) {
             authorizationParams={{
                 redirect_uri:
                     typeof window !== 'undefined' ? window.location.origin : '',
+            }}
+            onRedirectCallback={() => {
+                router.navigate({ to: '/' });
             }}
         >
             <Auth0ContextProvider>{children}</Auth0ContextProvider>
@@ -46,14 +51,13 @@ function Auth0ContextProvider({ children }: { children: React.ReactNode }) {
     };
 
     /*========== 
-        We need a useEffet to update the router whenever the auth mounts or changes
+        This gives us auth0 context in Tanstatck router beforeLoad 
     ==========*/
     useEffect(() => {
         router.update({ context: { auth: contextValue } });
 
-        router.invalidate(); // TODO: Is this necessary and what does it do?
-        // According to Claude: re-triggers beforeLoad with the updated context
-    }, [isAuthenticated, isLoading, user]);
+        router.invalidate();
+    }, [isAuthenticated, isLoading, user?.sub]);
 
     return (
         <Auth0Context.Provider value={contextValue}>

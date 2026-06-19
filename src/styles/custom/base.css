@@ -1,8 +1,22 @@
 @layer base {
-    a,
-    input,
-    button {
-        @apply in-out-smooth;
+    body {
+        @apply bg-light;
+        @apply text-dark;
+    }
+
+    ::selection {
+        @apply bg-primary;
+        @apply text-light;
+    }
+
+    footer,
+    header,
+    section {
+        @apply gutter;
+    }
+
+    section {
+        @apply container;
     }
 
     h1,
@@ -15,19 +29,13 @@
     }
 
     h1 {
-        @apply text-4xl;
-
-        @apply md:text-6xl;
+        @apply title;
     }
 
-    h2 {
-        @apply text-xl;
-
-        @apply md:text-3xl;
-    }
-
-    section {
-        @apply gutter;
+    a,
+    input,
+    button {
+        @apply in-out-smooth;
     }
 
     img {
@@ -36,10 +44,9 @@
 
     input {
         @apply outline-0;
-    }
 
-    ::selection {
-        @apply bg-primary;
-        @apply text-light;
+        @apply accent-primary;
+
+        @apply cursor-pointer;
     }
 }

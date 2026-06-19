@@ -1,0 +1,39 @@
+@layer components {
+    .form {
+        @apply space-y-7;
+        @apply lg:space-y-8;
+
+        .checkbox,
+        .radio {
+            @apply flex;
+            @apply items-center;
+
+            @apply space-x-5;
+
+            @apply capitalize;
+        }
+
+        .fieldset {
+            @apply space-y-7;
+            @apply lg:space-y-8;
+        }
+
+        .label {
+            @apply flex;
+            @apply flex-col;
+
+            .input {
+                @apply mt-4;
+
+                @apply border-b-2;
+                @apply border-neutral;
+
+                @apply focus:border-primary;
+            }
+        }
+
+        .legend {
+            @apply mb-6;
+        }
+    }
+}

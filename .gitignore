@@ -11,6 +11,9 @@ dist-ssr
 .vinxi
 __unconfig*
 todos.json
+ 
+# 6ine
+temp/
 
 # Krukar
 to_do.txt

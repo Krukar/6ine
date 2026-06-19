@@ -4,7 +4,8 @@
 @utility button {
     @apply w-full;
 
-    @apply px-7;
+    @apply px-6;
+    @apply lg:px-7;
     @apply py-5;
 
     @apply rounded-sm;
@@ -12,18 +13,25 @@
     @apply font-heading;
     @apply font-medium;
 
-    @apply text-lg;
+    @apply lg:text-lg;
 
     @apply tracking-wider;
     @apply uppercase;
 
+    @apply leading-none;
+
     @apply cursor-pointer;
+
+    @apply shadow-md;
 
     @apply focus:bg-dark;
     @apply hover:bg-dark;
 
     @apply focus:text-light;
     @apply hover:text-light;
+
+    @apply disabled:bg-neutral;
+    @apply disabled:cursor-not-allowed;
 }
 
 @utility button--primary {
@@ -54,8 +62,10 @@
 /*========== 
     Form
 ==========*/
-@utility fieldset {
-    @apply mb-7;
+/* @utility fieldset {
+    @apply mb-8;
+
+    @apply space-y-8;
 }
 
 @utility input {
@@ -70,16 +80,23 @@
 @utility label {
     @apply flex;
     @apply flex-col;
-}
+} */
 
 /*========== 
     Layout
 ==========*/
+@utility container {
+    @apply max-w-7xl;
+
+    @apply mx-auto;
+
+    @apply py-8;
+    @apply lg:py-9;
+}
+
 @utility gutter {
     @apply px-7;
-    @apply md:px-8;
-    @apply lg:px-9;
-    @apply xl:px-10;
+    @apply lg:px-8;
 }
 
 /*========== 
@@ -89,16 +106,23 @@
     @apply in-out-smooth;
 }
 
-@utility link--primary {
+@utility link--dark {
     @apply link;
 
-    @apply hover:text-primary;
-    @apply focus:text-primary;
+    @apply hover:text-dark;
+    @apply focus:text-dark;
 }
 
 @utility link--opacity {
     @apply hover:opacity-80;
     @apply focus:opacity-80;
+}
+
+@utility link--primary {
+    @apply link;
+
+    @apply hover:text-primary;
+    @apply focus:text-primary;
 }
 
 /*========== 
@@ -109,4 +133,16 @@
 
     @apply font-bold;
     @apply tracking-wide;
+
+    @apply text-center;
+}
+
+@utility title {
+    @apply heading;
+
+    @apply text-4xl;
+    @apply lg:text-6xl;
+
+    @apply mb-7;
+    @apply lg:mb-8;
 }

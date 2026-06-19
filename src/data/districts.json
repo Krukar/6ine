@@ -1,0 +1,8 @@
+[
+    { "key": "old_toronto", "value": "Old Toronto" },
+    { "key": "etobicoke", "value": "Etobicoke" },
+    { "key": "scarborough", "value": "Scarborough" },
+    { "key": "york", "value": "York" },
+    { "key": "north_york", "value": "North York" },
+    { "key": "east_york", "value": "East York" }
+]

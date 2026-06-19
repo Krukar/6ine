@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router';
 
-export const Route = createFileRoute('/create/')({
+export const Route = createFileRoute('/upload/')({
     beforeLoad: ({ context }) => {
         /*========== 
             If the auth is loading then return and wait for the next cycle
@@ -10,7 +10,7 @@ export const Route = createFileRoute('/create/')({
         /*========== 
             If they are not logged in send them to the login page
         ==========*/
-        if (!context.auth?.isAuthenticated) {
+        if (!context.auth.isAuthenticated) {
             context.auth.login();
 
             return;
@@ -19,6 +19,16 @@ export const Route = createFileRoute('/create/')({
     component: RouteComponent,
 });
 
+import Form from '@/components/Upload/Index';
+
 function RouteComponent() {
-    return <div>Hello "/create/"!</div>;
+    return (
+        <section>
+            <h1>Create Your 6ine</h1>
+
+            <div>
+                <Form />
+            </div>
+        </section>
+    );
 }

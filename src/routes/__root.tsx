@@ -9,9 +9,8 @@ import { TanStackDevtools } from '@tanstack/react-devtools';
 import { Auth0Wrapper } from '@/auth/auth0';
 import type { Auth0ContextType } from '@/auth/auth0';
 
-import Banner from '@/components/Banner';
 import Footer from '@/components/Footer';
-import Header from '@/components/Header';
+import Header from '@/components/Header/Index';
 import Gate from '@/components/Gate/Index';
 
 import styles from '@/styles/index.css?url';
@@ -50,10 +49,8 @@ function RootDocument({ children }: { children: React.ReactNode }) {
                 <HeadContent />
             </head>
 
-            <body>
+            <body className="custom-scrollbar">
                 <Auth0Wrapper>
-                    <Banner />
-
                     <Header />
 
                     <main>{children}</main>

@@ -6,11 +6,18 @@ export function getRouter() {
         routeTree,
         scrollRestoration: true,
         defaultPreload: 'intent',
-        defaultPreloadStaleTime: 0,
         context: {
             auth: undefined,
         },
     });
+
+    if (typeof window !== 'undefined') {
+        router.subscribe('onResolved', ({ pathChanged }) => {
+            if (pathChanged) {
+                (document.activeElement as HTMLElement)?.blur();
+            }
+        });
+    }
 
     return router;
 }

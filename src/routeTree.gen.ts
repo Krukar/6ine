@@ -10,7 +10,9 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as CreateIndexRouteImport } from './routes/create/index'
+import { Route as UploadIndexRouteImport } from './routes/upload/index'
+import { Route as DashboardIndexRouteImport } from './routes/dashboard/index'
+import { Route as ChannelIndexRouteImport } from './routes/channel/index'
 import { Route as ProfileUserIdRouteImport } from './routes/profile/$userId'
 import { Route as PlayerVideoIdRouteImport } from './routes/player/$videoId'
 import { Route as PageTermsRouteImport } from './routes/page/terms'
@@ -22,9 +24,19 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const CreateIndexRoute = CreateIndexRouteImport.update({
-  id: '/create/',
-  path: '/create/',
+const UploadIndexRoute = UploadIndexRouteImport.update({
+  id: '/upload/',
+  path: '/upload/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardIndexRoute = DashboardIndexRouteImport.update({
+  id: '/dashboard/',
+  path: '/dashboard/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ChannelIndexRoute = ChannelIndexRouteImport.update({
+  id: '/channel/',
+  path: '/channel/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProfileUserIdRoute = ProfileUserIdRouteImport.update({
@@ -60,7 +72,9 @@ export interface FileRoutesByFullPath {
   '/page/terms': typeof PageTermsRoute
   '/player/$videoId': typeof PlayerVideoIdRoute
   '/profile/$userId': typeof ProfileUserIdRoute
-  '/create/': typeof CreateIndexRoute
+  '/channel/': typeof ChannelIndexRoute
+  '/dashboard/': typeof DashboardIndexRoute
+  '/upload/': typeof UploadIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -69,7 +83,9 @@ export interface FileRoutesByTo {
   '/page/terms': typeof PageTermsRoute
   '/player/$videoId': typeof PlayerVideoIdRoute
   '/profile/$userId': typeof ProfileUserIdRoute
-  '/create': typeof CreateIndexRoute
+  '/channel': typeof ChannelIndexRoute
+  '/dashboard': typeof DashboardIndexRoute
+  '/upload': typeof UploadIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -79,7 +95,9 @@ export interface FileRoutesById {
   '/page/terms': typeof PageTermsRoute
   '/player/$videoId': typeof PlayerVideoIdRoute
   '/profile/$userId': typeof ProfileUserIdRoute
-  '/create/': typeof CreateIndexRoute
+  '/channel/': typeof ChannelIndexRoute
+  '/dashboard/': typeof DashboardIndexRoute
+  '/upload/': typeof UploadIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -90,7 +108,9 @@ export interface FileRouteTypes {
     | '/page/terms'
     | '/player/$videoId'
     | '/profile/$userId'
-    | '/create/'
+    | '/channel/'
+    | '/dashboard/'
+    | '/upload/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -99,7 +119,9 @@ export interface FileRouteTypes {
     | '/page/terms'
     | '/player/$videoId'
     | '/profile/$userId'
-    | '/create'
+    | '/channel'
+    | '/dashboard'
+    | '/upload'
   id:
     | '__root__'
     | '/'
@@ -108,7 +130,9 @@ export interface FileRouteTypes {
     | '/page/terms'
     | '/player/$videoId'
     | '/profile/$userId'
-    | '/create/'
+    | '/channel/'
+    | '/dashboard/'
+    | '/upload/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -118,7 +142,9 @@ export interface RootRouteChildren {
   PageTermsRoute: typeof PageTermsRoute
   PlayerVideoIdRoute: typeof PlayerVideoIdRoute
   ProfileUserIdRoute: typeof ProfileUserIdRoute
-  CreateIndexRoute: typeof CreateIndexRoute
+  ChannelIndexRoute: typeof ChannelIndexRoute
+  DashboardIndexRoute: typeof DashboardIndexRoute
+  UploadIndexRoute: typeof UploadIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -130,11 +156,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/create/': {
-      id: '/create/'
-      path: '/create'
-      fullPath: '/create/'
-      preLoaderRoute: typeof CreateIndexRouteImport
+    '/upload/': {
+      id: '/upload/'
+      path: '/upload'
+      fullPath: '/upload/'
+      preLoaderRoute: typeof UploadIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard/': {
+      id: '/dashboard/'
+      path: '/dashboard'
+      fullPath: '/dashboard/'
+      preLoaderRoute: typeof DashboardIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/channel/': {
+      id: '/channel/'
+      path: '/channel'
+      fullPath: '/channel/'
+      preLoaderRoute: typeof ChannelIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/profile/$userId': {
@@ -182,7 +222,9 @@ const rootRouteChildren: RootRouteChildren = {
   PageTermsRoute: PageTermsRoute,
   PlayerVideoIdRoute: PlayerVideoIdRoute,
   ProfileUserIdRoute: ProfileUserIdRoute,
-  CreateIndexRoute: CreateIndexRoute,
+  ChannelIndexRoute: ChannelIndexRoute,
+  DashboardIndexRoute: DashboardIndexRoute,
+  UploadIndexRoute: UploadIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
